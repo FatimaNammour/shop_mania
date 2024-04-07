@@ -46,7 +46,7 @@ class AppTextField extends StatelessWidget {
                     .textTheme
                     .displayLarge!
                     .copyWith(fontSize: 18))
-            : SizedBox(),
+            : const SizedBox(),
         ReactiveTextField(
           textInputAction: textInputAction,
           keyboardType: textInputType,

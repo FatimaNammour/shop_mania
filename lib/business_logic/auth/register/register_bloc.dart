@@ -6,7 +6,6 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:shop_mania/core/constant/enums.dart';
 import 'package:shop_mania/core/dio/exceptions.dart';
 import 'package:shop_mania/core/utils/regular_expresion.dart';
-import 'package:shop_mania/core/widgets/toast.dart';
 import 'package:shop_mania/data/repositories/auth_repo.dart';
 
 part 'register_event.dart';
@@ -128,7 +127,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           passwordRepeat: state.passwordRepeat,
         );
         emit(state.copyWith());
-      } on CustomException catch (e) {
+      } on CustomException {
         log("Hi from catch");
         emit(state.copyWith(status: SubmissionStatus.failed));
         // CustomToast.showError(e.error);
