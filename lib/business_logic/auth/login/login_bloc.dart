@@ -1,0 +1,82 @@
+import 'dart:developer';
+
+import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:reactive_forms/reactive_forms.dart';
+import 'package:shop_mania/core/constant/enums.dart';
+
+import 'package:shop_mania/data/repositories/auth_repo.dart';
+
+part 'login_event.dart';
+part 'login_state.dart';
+
+class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  LoginBloc({
+    required AuthenticationRepository authenticationRepository,
+  })  : _authenticationRepository = authenticationRepository,
+        super(const LoginState()) {
+    on<LoginEmailChanged>(_onEmailChanged);
+    on<LoginPasswordChanged>(_onPasswordChanged);
+    on<LoginSubmitted>(_onSubmitted);
+  }
+
+  final AuthenticationRepository _authenticationRepository;
+  final form = FormGroup({
+    "email": FormControl<String>(
+        validators: [Validators.required, Validators.email]),
+    "password": FormControl<String>(validators: [
+      Validators.required,
+    ]),
+  });
+
+  void _onEmailChanged(
+    LoginEmailChanged event,
+    Emitter<LoginState> emit,
+  ) {
+    final email = event.email;
+    emit(
+      state.copyWith(
+        email: email,
+        isValid: form.valid,
+      ),
+    );
+  }
+
+  void _onPasswordChanged(
+    LoginPasswordChanged event,
+    Emitter<LoginState> emit,
+  ) {
+    final password = event.password;
+    emit(
+      state.copyWith(
+        password: password,
+        isValid: form.valid,
+      ),
+    );
+  }
+
+  Future<void> _onSubmitted(
+    LoginSubmitted event,
+    Emitter<LoginState> emit,
+  ) async {
+    log("Hi from _onSubmitted");
+    log(state.isValid.toString());
+    if (state.isValid) {
+      emit(state.copyWith(status: SubmissionStatus.inProgress));
+      try {
+        await _authenticationRepository.logIn(
+          username: state.email,
+          password: state.password,
+        );
+        emit(state.copyWith(status: SubmissionStatus.success));
+      } catch (_) {
+        log("Hi from catch");
+        emit(state.copyWith(status: SubmissionStatus.failed));
+      }
+    } else {
+      log("Hi from else");
+      form.markAllAsTouched();
+      emit(state.copyWith(status: SubmissionStatus.dataMissing));
+    }
+  }
+}
