@@ -20,21 +20,21 @@ class AppTheme {
     ),
     textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
-            textStyle: MaterialStateProperty.all<TextStyle>(
+            textStyle: WidgetStateProperty.all<TextStyle>(
                 const TextStyle(fontSize: 20, color: ConstColors.primary)),
             foregroundColor:
-                MaterialStateProperty.all<Color>(ConstColors.primary))),
+                WidgetStateProperty.all<Color>(ConstColors.primary))),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        padding: MaterialStateProperty.all<EdgeInsets>(
+        padding: WidgetStateProperty.all<EdgeInsets>(
             const EdgeInsets.symmetric(horizontal: 50)),
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(30)))),
-        textStyle: MaterialStateProperty.all<TextStyle>(
+        textStyle: WidgetStateProperty.all<TextStyle>(
             const TextStyle(color: ConstColors.white, fontSize: 20)),
-        foregroundColor: MaterialStateProperty.all<Color>(ConstColors.white),
-        backgroundColor: MaterialStateProperty.all<Color>(ConstColors.primary),
+        foregroundColor: WidgetStateProperty.all<Color>(ConstColors.white),
+        backgroundColor: WidgetStateProperty.all<Color>(ConstColors.primary),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
