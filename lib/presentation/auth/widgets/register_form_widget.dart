@@ -46,10 +46,10 @@ class RegisterForm extends StatelessWidget {
           child: AppTextField(
             onFocus: () {
               registerBloc.add(RegisterUsernameChanged(
-                  registerBloc.form.control("email").value,
+                  registerBloc.form.control("email").value.toString(),
                   registerBloc.emailFocusNode.hasFocus));
             },
-            fieldfocusNode: FocusNode(),
+            fieldfocusNode: registerBloc.emailFocusNode,
             onChanged: (emailFormControl) {
               registerBloc.add(RegisterEmailChanged(emailFormControl.value));
             },
@@ -69,10 +69,10 @@ class RegisterForm extends StatelessWidget {
         AppTextField(
           onFocus: () {
             registerBloc.add(RegisterUsernameChanged(
-                registerBloc.form.control("phoneNumber").value,
+                registerBloc.form.control("phoneNumber").value.toString(),
                 registerBloc.numberFocusNode.hasFocus));
           },
-          fieldfocusNode: FocusNode(),
+          fieldfocusNode: registerBloc.numberFocusNode,
           onChanged: (numberFormControl) {
             registerBloc.add(RegisterNumberChanged(numberFormControl.value));
           },
@@ -91,10 +91,10 @@ class RegisterForm extends StatelessWidget {
         AppTextField(
           onFocus: () {
             registerBloc.add(RegisterUsernameChanged(
-                registerBloc.form.control("password").value,
+                registerBloc.form.control("password").value.toString(),
                 registerBloc.passwordFocusNode.hasFocus));
           },
-          fieldfocusNode: FocusNode(),
+          fieldfocusNode: registerBloc.passwordFocusNode,
           onChanged: (passwordFormControl) {
             registerBloc
                 .add(RegisterPasswordChanged(passwordFormControl.value));
@@ -118,10 +118,10 @@ class RegisterForm extends StatelessWidget {
         AppTextField(
           onFocus: () {
             registerBloc.add(RegisterUsernameChanged(
-                registerBloc.form.control("passwordRepeat").value,
+                registerBloc.form.control("passwordRepeat").value.toString(),
                 registerBloc.repeatPasswordFocusNode.hasFocus));
           },
-          fieldfocusNode: FocusNode(),
+          fieldfocusNode: registerBloc.repeatPasswordFocusNode,
           onChanged: (passwordRFormControl) {
             registerBloc
                 .add(RegisterPasswordRepeatChanged(passwordRFormControl.value));
