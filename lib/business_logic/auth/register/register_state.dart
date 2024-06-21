@@ -9,6 +9,7 @@ final class RegisterState extends Equatable {
     this.username = "",
     this.number = "",
     this.isValid = false,
+    this.hasFucos = false,
   });
 
   final SubmissionStatus status;
@@ -18,6 +19,7 @@ final class RegisterState extends Equatable {
   final String username;
   final String number;
   final bool isValid;
+  final bool hasFucos;
 
   RegisterState copyWith({
     SubmissionStatus? status,
@@ -27,8 +29,10 @@ final class RegisterState extends Equatable {
     String? username,
     String? number,
     bool? isValid,
+    bool? hasFocus,
   }) {
     return RegisterState(
+      hasFucos: hasFocus ?? this.hasFucos,
       status: status ?? this.status,
       email: email ?? this.email,
       password: password ?? this.password,
@@ -41,5 +45,5 @@ final class RegisterState extends Equatable {
 
   @override
   List<Object?> get props =>
-      [status, username, email, password, passwordRepeat, number];
+      [status, username, email, password, passwordRepeat, number, hasFucos];
 }

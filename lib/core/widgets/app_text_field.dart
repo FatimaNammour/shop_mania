@@ -1,64 +1,88 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:shop_mania/core/theme.dart';
 
-class AppTextField extends StatelessWidget {
-  const AppTextField({
-    Key? key,
-    this.form,
-    this.formName,
-    this.label,
-    // required this.onSubmitted,
-    required this.onChanged,
-    required this.textInputType,
-    required this.textInputAction,
-    // this.isVerificationCode = false,
-    this.labelText,
-    this.hintText,
-    this.suffixIcon,
-    this.validationMessages,
-    // this.focusNode,
-  }) : super(key: key);
+class AppTextField extends StatefulWidget {
+  const AppTextField(
+      {Key? key,
+      this.form,
+      this.formName,
+      this.label,
+      required this.onChanged,
+      required this.onFocus,
+      required this.textInputType,
+      required this.textInputAction,
+      // this.isVerificationCode = false,
+      this.labelText,
+      this.hintText,
+      this.suffixIcon,
+      this.prefixIcon,
+      this.validationMessages,
+      required this.fieldfocusNode})
+      : super(key: key);
 
   final FormControl? form;
   final String? formName;
   final String? label;
   final String? labelText;
   final String? hintText;
-
-  // final Function(FormControl<dynamic>)? onSubmitted;
   final Function(FormControl<dynamic>)? onChanged;
+  final Function()? onFocus;
   final Map<String, String Function(Object)>? validationMessages;
-  // final bool isVerificationCode;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final TextInputType textInputType;
   final TextInputAction textInputAction;
-  // final FocusNode? focusNode;
+  final FocusNode? fieldfocusNode;
+
+  @override
+  State<AppTextField> createState() => _AppTextFieldState();
+}
+
+class _AppTextFieldState extends State<AppTextField> {
+  @override
+  void initState() {
+    widget.fieldfocusNode!.addListener(() {
+      widget.onFocus!();
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    widget.fieldfocusNode!.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        labelText != null
-            ? Text(labelText!,
+        widget.labelText != null
+            ? Text(widget.labelText!,
                 style: Theme.of(context)
                     .textTheme
                     .displayLarge!
                     .copyWith(fontSize: 18))
             : const SizedBox(),
         ReactiveTextField(
-          textInputAction: textInputAction,
-          keyboardType: textInputType,
-          // onSubmitted: onSubmitted,
-          onChanged: onChanged,
+          focusNode: widget.fieldfocusNode,
+          textInputAction: widget.textInputAction,
+          keyboardType: widget.textInputType,
+          onChanged: widget.onChanged,
           textDirection: TextDirection.ltr,
-          formControl: form,
-          formControlName: formName,
-          validationMessages: validationMessages,
+          formControl: widget.form,
+          formControlName: widget.formName,
+          validationMessages: widget.validationMessages,
           decoration: InputDecoration(
+            filled: widget.fieldfocusNode!.hasFocus ? false : true,
+            fillColor: ConstColors.fieldFilled,
             hintTextDirection: TextDirection.ltr,
-            suffixIcon: suffixIcon,
+            suffixIcon: widget.suffixIcon,
+            prefixIcon: widget.prefixIcon,
             contentPadding: const EdgeInsets.symmetric(
               vertical: 5.0,
               horizontal: 10.0,
@@ -67,19 +91,15 @@ class AppTextField extends StatelessWidget {
                 color: ConstColors.displayMedium,
                 fontSize: 16.0,
                 fontWeight: FontWeight.normal),
-            hintText: hintText,
-
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
-              borderSide: const BorderSide(
-                color: ConstColors.displayLarge,
-              ),
-            ),
+            hintText: widget.hintText,
+            border: const OutlineInputBorder(
+                borderSide: BorderSide(color: ConstColors.fieldFilled),
+                borderRadius: BorderRadius.all(Radius.circular(20))),
             focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: ConstColors.displayMedium),
+                borderSide: BorderSide(color: ConstColors.primary),
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: ConstColors.displayMedium),
+                borderSide: BorderSide(color: ConstColors.fieldFilled),
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             disabledBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.only(
@@ -94,7 +114,7 @@ class AppTextField extends StatelessWidget {
                 borderSide: BorderSide(color: ConstColors.red)),
             focusedErrorBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(20)),
-              borderSide: BorderSide(color: ConstColors.displayLarge),
+              borderSide: BorderSide(color: ConstColors.red),
             ),
           ),
         ),

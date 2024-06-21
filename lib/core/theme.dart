@@ -58,7 +58,7 @@ class ConstColors {
   static const Color red = Colors.red;
   static const Color displayLarge = Colors.black;
   static const Color displayMedium = Color(0xffB3B8C4);
-  static const Color fieldFilled = Color(0xffF3F4F7);
+  static const Color fieldFilled = Color(0xffEEEEEE);
 
   static const Color primary = Color(0xff514EB7);
 }

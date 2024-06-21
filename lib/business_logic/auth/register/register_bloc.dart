@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:shop_mania/core/constant/enums.dart';
 import 'package:shop_mania/core/dio/exceptions.dart';
@@ -43,6 +44,12 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     ]),
   });
 
+  final FocusNode usernameFocusNode = FocusNode();
+  final FocusNode emailFocusNode = FocusNode();
+  final FocusNode numberFocusNode = FocusNode();
+  final FocusNode passwordFocusNode = FocusNode();
+  final FocusNode repeatPasswordFocusNode = FocusNode();
+
   void _onEmailChanged(
     RegisterEmailChanged event,
     Emitter<RegisterState> emit,
@@ -51,6 +58,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     emit(
       state.copyWith(
         email: email,
+        hasFocus: emailFocusNode.hasFocus,
         isValid: form.valid,
       ),
     );
@@ -64,6 +72,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     emit(
       state.copyWith(
         username: username,
+        hasFocus: usernameFocusNode.hasFocus,
         isValid: form.valid,
       ),
     );
@@ -78,6 +87,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     emit(
       state.copyWith(
         password: password,
+        hasFocus: passwordFocusNode.hasFocus,
         isValid: form.valid,
       ),
     );
@@ -87,11 +97,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     RegisterPasswordRepeatChanged event,
     Emitter<RegisterState> emit,
   ) {
-    log("Hiiiiiiiiiiiiiiiiiiiii there");
     final passwordRepeat = event.passwordRepeat;
     emit(
       state.copyWith(
         passwordRepeat: passwordRepeat,
+        hasFocus: repeatPasswordFocusNode.hasFocus,
         isValid: form.valid,
       ),
     );
@@ -105,6 +115,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     emit(
       state.copyWith(
         number: number,
+        hasFocus: numberFocusNode.hasFocus,
         isValid: form.valid,
       ),
     );

@@ -35,9 +35,10 @@ final class RegisterPasswordRepeatChanged extends RegisterEvent {
 }
 
 final class RegisterUsernameChanged extends RegisterEvent {
-  const RegisterUsernameChanged(this.username);
+  const RegisterUsernameChanged(this.username, this.hasFocus);
 
   final String username;
+  final bool hasFocus;
 
   @override
   List<Object> get props => [username];

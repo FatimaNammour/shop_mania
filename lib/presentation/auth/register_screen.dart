@@ -2,12 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reactive_forms/reactive_forms.dart';
 
 import 'package:shop_mania/business_logic/auth/register/register_bloc.dart';
 import 'package:shop_mania/core/constant/enums.dart';
-import 'package:shop_mania/core/widgets/app_text_field.dart';
+import 'package:shop_mania/core/theme.dart';
 import 'package:shop_mania/core/widgets/loading.dart';
+
+import 'widgets/register_form_widget.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -22,6 +23,7 @@ class SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ConstColors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
@@ -58,11 +60,13 @@ class SignUpPageState extends State<SignUpPage> {
                           style: Theme.of(context).textTheme.displayLarge),
                       const SizedBox(height: 15),
                       Text("Start learning with create your account",
-                          style: Theme.of(context).textTheme.displayMedium),
+                          style: Theme.of(context).textTheme.displaySmall),
                     ],
                   ),
                   const SizedBox(height: 40),
-                  const RegisterForm(),
+                  RegisterForm(
+                    registerBloc: context.read<RegisterBloc>(),
+                  ),
                   const SizedBox(height: 30),
                   Center(
                     child: Column(
@@ -112,88 +116,6 @@ class SignUpPageState extends State<SignUpPage> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class RegisterForm extends StatelessWidget {
-  const RegisterForm({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ReactiveForm(
-      formGroup: context.read<RegisterBloc>().form,
-      child: Column(children: [
-        AppTextField(
-          onChanged: (usernameFormControl) {
-            log("asetestrtre000");
-            context
-                .read<RegisterBloc>()
-                .add(RegisterUsernameChanged(usernameFormControl.value));
-          },
-          textInputAction: TextInputAction.next,
-          textInputType: TextInputType.name,
-          formName: "username",
-          hintText: "Create your username",
-          labelText: "Username",
-        ),
-        const SizedBox(height: 15),
-        AppTextField(
-          onChanged: (emailFormControl) {
-            log("asetestrtre000");
-            context
-                .read<RegisterBloc>()
-                .add(RegisterEmailChanged(emailFormControl.value));
-          },
-          textInputAction: TextInputAction.next,
-          textInputType: TextInputType.name,
-          formName: "email",
-          hintText: "Create your Email",
-          labelText: "Email",
-        ),
-        const SizedBox(height: 15),
-        AppTextField(
-          onChanged: (numberFormControl) {
-            log("asetestrtre000");
-            context
-                .read<RegisterBloc>()
-                .add(RegisterNumberChanged(numberFormControl.value));
-          },
-          textInputAction: TextInputAction.next,
-          textInputType: TextInputType.name,
-          formName: "phoneNumber",
-          hintText: "Create your number",
-          labelText: "Number",
-        ),
-        const SizedBox(height: 15),
-        AppTextField(
-          onChanged: (passwordFormControl) {
-            log("asetestrtre000");
-            context
-                .read<RegisterBloc>()
-                .add(RegisterPasswordChanged(passwordFormControl.value));
-          },
-          textInputAction: TextInputAction.next,
-          textInputType: TextInputType.name,
-          formName: "password",
-          hintText: "Create your password",
-          labelText: "Password",
-        ),
-        const SizedBox(height: 15),
-        AppTextField(
-          onChanged: (passwordRFormControl) {
-            log("asetestrtre000");
-            context
-                .read<RegisterBloc>()
-                .add(RegisterPasswordRepeatChanged(passwordRFormControl.value));
-          },
-          textInputAction: TextInputAction.next,
-          textInputType: TextInputType.name,
-          formName: "passwordRepeat",
-          hintText: "Repeat your password",
-          labelText: "Repeat Password",
-        ),
-      ]),
     );
   }
 }

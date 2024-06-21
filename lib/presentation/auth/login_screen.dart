@@ -143,6 +143,10 @@ class LoginForm extends StatelessWidget {
                         .displayLarge!
                         .copyWith(fontSize: 18)),
                 AppTextField(
+                  fieldfocusNode: FocusNode(),
+                  onFocus: () {
+                    log("onFocus");
+                  },
                   onChanged: (emailFormControl) {
                     log("asetestrtre000");
                     context
@@ -166,6 +170,10 @@ class LoginForm extends StatelessWidget {
                         .displayLarge!
                         .copyWith(fontSize: 18)),
                 AppTextField(
+                  fieldfocusNode: FocusNode(),
+                  onFocus: () {
+                    log("onFocus");
+                  },
                   onChanged: (emailFormControl) {
                     log("asetestrtre000");
                     context
