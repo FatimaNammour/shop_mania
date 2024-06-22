@@ -23,7 +23,6 @@ class SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ConstColors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
@@ -57,10 +56,10 @@ class SignUpPageState extends State<SignUpPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Create Account",
-                          style: Theme.of(context).textTheme.displayLarge),
+                          style: Theme.of(context).textTheme.titleLarge),
                       const SizedBox(height: 15),
                       Text("Start learning with create your account",
-                          style: Theme.of(context).textTheme.displaySmall),
+                          style: Theme.of(context).textTheme.titleMedium),
                     ],
                   ),
                   const SizedBox(height: 40),
@@ -80,7 +79,7 @@ class SignUpPageState extends State<SignUpPage> {
                             child: const Text("Create Account")),
                         const SizedBox(height: 15),
                         Text("Or using other method",
-                            style: Theme.of(context).textTheme.displaySmall),
+                            style: Theme.of(context).textTheme.bodyMedium),
                         OutlinedButton.icon(
                           label: const Text("SignUp with google"),
                           icon: Image.asset(
@@ -90,7 +89,7 @@ class SignUpPageState extends State<SignUpPage> {
                           style: Theme.of(context).outlinedButtonTheme.style,
                           onPressed: () {
                             Navigator.of(context).pushNamed(
-                              '/RegisterScreen',
+                              '/VerificationCodeScreen',
                             );
                           },
                         ),
