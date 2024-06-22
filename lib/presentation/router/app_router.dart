@@ -10,6 +10,8 @@ import 'package:shop_mania/presentation/auth/register_screen.dart';
 import 'dart:developer';
 import 'package:shop_mania/presentation/auth/splash_screen.dart';
 
+import '../auth/verification_screen.dart';
+
 class AppRouter {
   MaterialPageRoute onGenerateRoute(RouteSettings routeSettings) {
     log("routeSettings.name");
@@ -35,7 +37,14 @@ class AppRouter {
                 ));
       case "/AuthScreen":
         return MaterialPageRoute(builder: (_) => const SplashScreen());
-
+      case "/VerificationCodeScreen":
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => RegisterBloc(
+                      authenticationRepository:
+                          AuthenticationRepository(dio: GetIt.instance<Dio>())),
+                  child: const VerificationCodeScreen(),
+                ));
       default:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
     }
