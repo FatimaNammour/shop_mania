@@ -61,10 +61,7 @@ class _AppTextFieldState extends State<AppTextField> {
       children: [
         widget.labelText != null
             ? Text(widget.labelText!,
-                style: Theme.of(context)
-                    .textTheme
-                    .displayLarge!
-                    .copyWith(fontSize: 18))
+                style: Theme.of(context).textTheme.labelLarge)
             : const SizedBox(),
         ReactiveTextField(
           focusNode: widget.fieldfocusNode,
@@ -85,10 +82,7 @@ class _AppTextFieldState extends State<AppTextField> {
               vertical: 5.0,
               horizontal: 10.0,
             ),
-            hintStyle: const TextStyle(
-                color: ConstColors.displayMedium,
-                fontSize: 16.0,
-                fontWeight: FontWeight.normal),
+            hintStyle: Theme.of(context).textTheme.bodySmall,
             hintText: widget.hintText,
             border: const OutlineInputBorder(
                 borderSide: BorderSide(color: ConstColors.fieldFilled),

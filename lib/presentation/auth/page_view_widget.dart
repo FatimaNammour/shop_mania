@@ -29,12 +29,12 @@ class PageViewWidget extends StatelessWidget {
         Text(
           title,
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.displayLarge,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         Text(
           subTitle,
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.displayMedium,
+          style: Theme.of(context).textTheme.bodySmall,
         ),
       ]),
     );

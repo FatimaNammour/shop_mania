@@ -46,7 +46,7 @@ class OnboardingScreen extends StatelessWidget {
                   count: 3,
                   textDirection: TextDirection.ltr,
                   effect: const WormEffect(
-                      dotColor: ConstColors.displayMedium,
+                      dotColor: ConstColors.displaySmall,
                       dotHeight: 8,
                       dotWidth: 8),
                 ),
@@ -63,7 +63,9 @@ class OnboardingScreen extends StatelessWidget {
                         '/LoginScreen',
                       );
                     },
-                    child: const Text("Already have account")),
+                    child: const Text(
+                      "Already have an account",
+                    )),
                 const SizedBox(
                   height: 10,
                 ),

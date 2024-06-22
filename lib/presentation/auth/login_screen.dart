@@ -2,12 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reactive_forms/reactive_forms.dart';
 import 'package:shop_mania/business_logic/auth/login/login_bloc.dart';
 
 import 'package:shop_mania/core/constant/enums.dart';
-import 'package:shop_mania/core/widgets/app_text_field.dart';
 import 'package:shop_mania/core/widgets/loading.dart';
+import 'package:shop_mania/presentation/auth/widgets/login_form_widget.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -55,10 +54,10 @@ class SignInPageState extends State<SignInPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Login Account",
-                          style: Theme.of(context).textTheme.displayLarge),
+                          style: Theme.of(context).textTheme.titleLarge),
                       const SizedBox(height: 15),
                       Text("Please login with registered account",
-                          style: Theme.of(context).textTheme.displayMedium),
+                          style: Theme.of(context).textTheme.titleMedium),
                     ],
                   ),
                   const SizedBox(height: 40),
@@ -85,7 +84,7 @@ class SignInPageState extends State<SignInPage> {
                   Center(
                     child: Column(children: [
                       Text("Or using other method",
-                          style: Theme.of(context).textTheme.displaySmall),
+                          style: Theme.of(context).textTheme.bodyMedium),
                       OutlinedButton.icon(
                         label: const Text("SignUp with google"),
                         icon: Image.asset(
@@ -122,80 +121,5 @@ class SignInPageState extends State<SignInPage> {
         ),
       ),
     );
-  }
-}
-
-class LoginForm extends StatelessWidget {
-  const LoginForm({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ReactiveForm(
-        formGroup: context.read<LoginBloc>().form,
-        child: Column(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Email",
-                    style: Theme.of(context)
-                        .textTheme
-                        .displayLarge!
-                        .copyWith(fontSize: 18)),
-                AppTextField(
-                  fieldfocusNode: FocusNode(),
-                  onFocus: () {
-                    log("onFocus");
-                  },
-                  onChanged: (emailFormControl) {
-                    log("asetestrtre000");
-                    context
-                        .read<LoginBloc>()
-                        .add(LoginEmailChanged(emailFormControl.value));
-                  },
-                  textInputAction: TextInputAction.next,
-                  textInputType: TextInputType.name,
-                  formName: "email",
-                  hintText: "Create your Email",
-                ),
-              ],
-            ),
-            const SizedBox(height: 30),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Password",
-                    style: Theme.of(context)
-                        .textTheme
-                        .displayLarge!
-                        .copyWith(fontSize: 18)),
-                AppTextField(
-                  fieldfocusNode: FocusNode(),
-                  onFocus: () {
-                    log("onFocus");
-                  },
-                  onChanged: (emailFormControl) {
-                    log("asetestrtre000");
-                    context
-                        .read<LoginBloc>()
-                        .add(LoginEmailChanged(emailFormControl.value));
-
-                    // log(context.read<LoginBloc>().);
-                  },
-                  // onSubmitted: (passwordFormControl) {
-                  //   context
-                  //       .read<LoginBloc>()
-                  //       .add(LoginEmailChanged(passwordFormControl.value));
-                  // },
-                  textInputAction: TextInputAction.next,
-                  textInputType: TextInputType.name,
-                  formName: "password",
-                  hintText: "Enter your password",
-                  // label: "Enter your password",
-                ),
-              ],
-            ),
-          ],
-        ));
   }
 }

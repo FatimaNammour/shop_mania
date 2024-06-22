@@ -33,7 +33,7 @@ class RegisterForm extends StatelessWidget {
           labelText: "Username",
           prefixIcon: const Icon(
             Icons.person_2_outlined,
-            color: ConstColors.displayMedium,
+            color: ConstColors.displaySmall,
           ),
         ),
         const SizedBox(height: 15),
@@ -60,7 +60,7 @@ class RegisterForm extends StatelessWidget {
             labelText: "Email",
             prefixIcon: const Icon(
               Icons.email_outlined,
-              color: ConstColors.displayMedium,
+              color: ConstColors.displaySmall,
             ),
           ),
         ),
@@ -83,7 +83,7 @@ class RegisterForm extends StatelessWidget {
           labelText: "Number",
           prefixIcon: const Icon(
             Icons.phone_android_outlined,
-            color: ConstColors.displayMedium,
+            color: ConstColors.displaySmall,
           ),
         ),
         const SizedBox(height: 15),
@@ -106,11 +106,11 @@ class RegisterForm extends StatelessWidget {
           labelText: "Password",
           suffixIcon: const Icon(
             Icons.remove_red_eye_outlined,
-            color: ConstColors.displayMedium,
+            color: ConstColors.displaySmall,
           ),
           prefixIcon: const Icon(
             Icons.lock_outline,
-            color: ConstColors.displayMedium,
+            color: ConstColors.displaySmall,
           ),
         ),
         const SizedBox(height: 15),
@@ -133,11 +133,11 @@ class RegisterForm extends StatelessWidget {
           labelText: "Repeat Password",
           suffixIcon: const Icon(
             Icons.remove_red_eye_outlined,
-            color: ConstColors.displayMedium,
+            color: ConstColors.displaySmall,
           ),
           prefixIcon: const Icon(
             Icons.lock_outline,
-            color: ConstColors.displayMedium,
+            color: ConstColors.displaySmall,
           ),
         ),
       ]),
