@@ -265,7 +265,12 @@ class SignInPageState extends State<SignInPage> {
                                             ),
                                             const SizedBox(height: 30),
                                             ElevatedButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  Navigator.of(context)
+                                                      .pushNamed(
+                                                    '/MainHomeScreen',
+                                                  );
+                                                },
                                                 child: const Text(
                                                     "Change password"))
                                           ],

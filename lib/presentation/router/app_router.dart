@@ -9,6 +9,7 @@ import 'package:shop_mania/presentation/auth/login_screen.dart';
 import 'package:shop_mania/presentation/auth/register_screen.dart';
 import 'dart:developer';
 import 'package:shop_mania/presentation/auth/splash_screen.dart';
+import 'package:shop_mania/presentation/home/main_home.dart';
 
 import '../auth/verification_screen.dart';
 
@@ -45,6 +46,9 @@ class AppRouter {
                           AuthenticationRepository(dio: GetIt.instance<Dio>())),
                   child: const VerificationCodeScreen(),
                 ));
+
+      case "/MainHomeScreen":
+        return MaterialPageRoute(builder: (_) => const MainHomeScreen());
       default:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
     }
