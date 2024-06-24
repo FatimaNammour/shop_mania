@@ -2,11 +2,15 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 import 'package:shop_mania/business_logic/auth/login/login_bloc.dart';
 
 import 'package:shop_mania/core/constant/enums.dart';
+import 'package:shop_mania/core/theme.dart';
 import 'package:shop_mania/core/widgets/loading.dart';
 import 'package:shop_mania/presentation/auth/widgets/login_form_widget.dart';
+
+import '../../core/widgets/app_text_field.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -67,9 +71,207 @@ class SignInPageState extends State<SignInPage> {
                     children: [
                       TextButton(
                           onPressed: () {
-                            Navigator.of(context).pushNamed(
-                              '/LoginScreen',
-                            );
+                            // showModalBottomSheet(
+                            //     enableDrag: true,
+                            //     showDragHandle: true,
+                            //     context: context,
+                            //     builder: (contextt) => Container(
+                            //           decoration: const BoxDecoration(
+                            //               borderRadius: BorderRadius.horizontal(
+                            //                   left: Radius.circular(20),
+                            //                   right: Radius.circular(20))),
+                            //           child: ListView(
+                            //             padding: const EdgeInsets.all(20),
+                            //             children: [
+                            //               Center(
+                            //                 child: Text("Forget password",
+                            //                     style: Theme.of(context)
+                            //                         .textTheme
+                            //                         .titleLarge),
+                            //               ),
+                            //               const SizedBox(height: 20),
+                            //               Center(
+                            //                 child: Text(
+                            //                     "Enter your emaidl or phone number",
+                            //                     style: Theme.of(context)
+                            //                         .textTheme
+                            //                         .bodyMedium),
+                            //               ),
+                            //               const SizedBox(height: 30),
+                            //               ReactiveForm(
+                            //                 formGroup: context
+                            //                     .read<LoginBloc>()
+                            //                     .sendCodeform,
+                            //                 child: Column(
+                            //                   crossAxisAlignment:
+                            //                       CrossAxisAlignment.start,
+                            //                   children: [
+                            //                     Text("Email",
+                            //                         style: Theme.of(context)
+                            //                             .textTheme
+                            //                             .displayLarge!
+                            //                             .copyWith(
+                            //                                 fontSize: 18)),
+                            //                     AppTextField(
+                            //                       fieldfocusNode: FocusNode(),
+                            //                       onFocus: () {
+                            //                         log("onFocus");
+                            //                       },
+                            //                       onChanged:
+                            //                           (emailFormControl) {
+                            //                         log("asetestrtre000");
+                            //                         context
+                            //                             .read<LoginBloc>()
+                            //                             .add(LoginEmailChanged(
+                            //                                 emailFormControl
+                            //                                     .value));
+                            //                       },
+                            //                       textInputAction:
+                            //                           TextInputAction.next,
+                            //                       textInputType:
+                            //                           TextInputType.name,
+                            //                       formName: "email",
+                            //                       hintText: "Create your Email",
+                            //                       prefixIcon: const Icon(
+                            //                         Icons.email_outlined,
+                            //                         color: ConstColors
+                            //                             .displaySmall,
+                            //                       ),
+                            //                     ),
+                            //                   ],
+                            //                 ),
+                            //               ),
+                            //               const SizedBox(height: 30),
+                            //               ElevatedButton(
+                            //                   onPressed: () {},
+                            //                   child: const Text("Send code"))
+                            //             ],
+                            //           ),
+                            //         ));
+
+                            showModalBottomSheet(
+                                enableDrag: true,
+                                showDragHandle: true,
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (contextt) => FractionallySizedBox(
+                                      heightFactor: 0.9,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.horizontal(
+                                                    left: Radius.circular(20),
+                                                    right:
+                                                        Radius.circular(20))),
+                                        child: ListView(
+                                          padding: const EdgeInsets.all(20),
+                                          children: [
+                                            Center(
+                                              child: Text("Create new password",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleLarge),
+                                            ),
+                                            const SizedBox(height: 20),
+                                            Center(
+                                              child: Text(
+                                                  "Enter your new password",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium),
+                                            ),
+                                            const SizedBox(height: 30),
+                                            ReactiveForm(
+                                              formGroup: context
+                                                  .read<LoginBloc>()
+                                                  .sendCodeform,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text("password",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .displayLarge!
+                                                          .copyWith(
+                                                              fontSize: 18)),
+                                                  AppTextField(
+                                                    fieldfocusNode: FocusNode(),
+                                                    onFocus: () {
+                                                      log("onFocus");
+                                                    },
+                                                    onChanged:
+                                                        (emailFormControl) {
+                                                      log("asetestrtre000");
+                                                      context
+                                                          .read<LoginBloc>()
+                                                          .add(LoginEmailChanged(
+                                                              emailFormControl
+                                                                  .value));
+                                                    },
+                                                    textInputAction:
+                                                        TextInputAction.next,
+                                                    textInputType:
+                                                        TextInputType.name,
+                                                    formName: "password",
+                                                    hintText:
+                                                        "Enter your new password",
+                                                    prefixIcon: const Icon(
+                                                      Icons.lock_outline,
+                                                      color: ConstColors
+                                                          .displaySmall,
+                                                    ),
+                                                    suffixIcon: const Icon(Icons
+                                                        .remove_red_eye_outlined),
+                                                  ),
+                                                  const SizedBox(height: 30),
+                                                  Text("Repeate password",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .displayLarge!
+                                                          .copyWith(
+                                                              fontSize: 18)),
+                                                  AppTextField(
+                                                    fieldfocusNode: FocusNode(),
+                                                    onFocus: () {
+                                                      log("onFocus");
+                                                    },
+                                                    onChanged:
+                                                        (emailFormControl) {
+                                                      log("asetestrtre000");
+                                                      context
+                                                          .read<LoginBloc>()
+                                                          .add(LoginEmailChanged(
+                                                              emailFormControl
+                                                                  .value));
+                                                    },
+                                                    textInputAction:
+                                                        TextInputAction.next,
+                                                    textInputType:
+                                                        TextInputType.name,
+                                                    formName: "passwordRepeat",
+                                                    hintText:
+                                                        "Repeat your password",
+                                                    prefixIcon: const Icon(
+                                                      Icons.lock_outline,
+                                                      color: ConstColors
+                                                          .displaySmall,
+                                                    ),
+                                                    suffixIcon: const Icon(Icons
+                                                        .remove_red_eye_outlined),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            const SizedBox(height: 30),
+                                            ElevatedButton(
+                                                onPressed: () {},
+                                                child: const Text(
+                                                    "Change password"))
+                                          ],
+                                        ),
+                                      ),
+                                    ));
                           },
                           child: const Text("Forgot password?")),
                     ],

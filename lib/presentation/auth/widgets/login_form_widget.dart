@@ -26,7 +26,7 @@ class LoginForm extends StatelessWidget {
                         .displayLarge!
                         .copyWith(fontSize: 18)),
                 AppTextField(
-                  fieldfocusNode: FocusNode(),
+                  fieldfocusNode: context.read<LoginBloc>().emailFocusNode,
                   onFocus: () {
                     log("onFocus");
                   },
@@ -57,7 +57,7 @@ class LoginForm extends StatelessWidget {
                         .displayLarge!
                         .copyWith(fontSize: 18)),
                 AppTextField(
-                  fieldfocusNode: FocusNode(),
+                  fieldfocusNode: context.read<LoginBloc>().passwordFocusNode,
                   onFocus: () {
                     log("onFocus");
                   },

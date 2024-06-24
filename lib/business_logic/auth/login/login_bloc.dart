@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:shop_mania/core/constant/enums.dart';
 
@@ -26,6 +27,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         validators: [Validators.required, Validators.email]),
     "password": FormControl<String>(validators: [
       Validators.required,
+    ]),
+  });
+  final FocusNode emailFocusNode = FocusNode();
+  final FocusNode passwordFocusNode = FocusNode();
+  final FocusNode sendCodeFocusNode = FocusNode();
+
+  final sendCodeform = FormGroup({
+    "email": FormControl<String>(validators: [Validators.email]),
+    "password": FormControl<String>(validators: [Validators.email]),
+    "passwordRepeat": FormControl<String>(validators: [Validators.email]),
+    "number": FormControl<String>(validators: [
+      Validators.number(),
     ]),
   });
 

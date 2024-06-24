@@ -32,7 +32,7 @@ final class RegisterState extends Equatable {
     bool? hasFocus,
   }) {
     return RegisterState(
-      hasFucos: hasFocus ?? this.hasFucos,
+      hasFucos: hasFocus ?? hasFucos,
       status: status ?? this.status,
       email: email ?? this.email,
       password: password ?? this.password,
