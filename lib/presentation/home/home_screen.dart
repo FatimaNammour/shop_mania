@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_mania/core/theme.dart';
 import 'package:shop_mania/presentation/home/home_page.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,18 +26,54 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 40.0,
-          child: TabBar(
-            controller: TabController(length: 2, vsync: this),
-            tabs: const [Text("Home"), Text("Category")],
-            onTap: onTapTapped,
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        leadingWidth: 200,
+        leading: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              width: 50.0,
+              height: 50.0,
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle, color: ConstColors.fieldFilled),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Hi, Jonathan",
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+                Text(
+                  "let's go shopping",
+                  style: Theme.of(context).textTheme.labelSmall,
+                ),
+              ],
+            )
+          ],
         ),
-        homePages.elementAt(selectedIndex),
-      ],
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.notifications_none_outlined))
+        ],
+      ),
+      body: Column(
+        children: [
+          SizedBox(
+            height: 40.0,
+            child: TabBar(
+              controller: TabController(length: 2, vsync: this),
+              tabs: const [Text("Home"), Text("Category")],
+              onTap: onTapTapped,
+            ),
+          ),
+          Expanded(child: homePages.elementAt(selectedIndex)),
+        ],
+      ),
     );
   }
 }

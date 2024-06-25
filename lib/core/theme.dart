@@ -19,6 +19,16 @@ class AppTheme {
         fontSize: 14,
         fontWeight: FontWeight.bold,
       ),
+      labelMedium: TextStyle(
+        color: ConstColors.displayMedium,
+        fontSize: 12,
+        // fontWeight: FontWeight.bold,
+      ),
+      labelSmall: TextStyle(
+        color: ConstColors.displaySmall,
+        fontSize: 10,
+        // fontWeight: FontWeight.bold,
+      ),
       bodySmall: TextStyle(
         color: ConstColors.displaySmall,
         fontSize: 12,

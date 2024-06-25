@@ -30,7 +30,6 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Center(
         child: mainHomePages.elementAt(selectedIndex),
       ),
