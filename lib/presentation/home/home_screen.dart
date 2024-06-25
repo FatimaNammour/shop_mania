@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_mania/core/theme.dart';
+import 'package:shop_mania/presentation/home/category_page.dart';
 import 'package:shop_mania/presentation/home/home_page.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,8 +21,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   static const List<Widget> homePages = <Widget>[
     HomePage(),
-    Text('hhhhhh Page',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    CategoryPage(),
   ];
 
   @override
