@@ -11,6 +11,7 @@ import 'package:shop_mania/presentation/auth/register_screen.dart';
 import 'dart:developer';
 import 'package:shop_mania/presentation/auth/splash_screen.dart';
 import 'package:shop_mania/presentation/home/main_home.dart';
+import 'package:shop_mania/presentation/home/search/search_result_screen.dart';
 
 import '../auth/verification_screen.dart';
 import '../home/search/search_screen.dart';
@@ -56,6 +57,12 @@ class AppRouter {
             builder: (_) => BlocProvider(
                   create: (context) => SearchBloc(const SearchState()),
                   child: const SearchScreen(),
+                ));
+      case "/SearchResultScreen":
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => SearchBloc(const SearchState()),
+                  child: const SearchResultScreen(),
                 ));
       default:
         return MaterialPageRoute(builder: (_) => const SplashScreen());

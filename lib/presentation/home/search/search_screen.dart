@@ -29,6 +29,11 @@ class SearchScreen extends StatelessWidget {
                 formName: "searchText",
                 onChanged: (_) {},
                 onFocus: () {},
+                onSubmitted: (_) {
+                  Navigator.of(context).pushNamed(
+                    '/SearchResultScreen',
+                  );
+                },
                 textInputType: TextInputType.text,
                 textInputAction: TextInputAction.done,
                 fieldfocusNode: FocusNode(),

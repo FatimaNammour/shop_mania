@@ -9,6 +9,7 @@ class AppTextField extends StatefulWidget {
       this.formName,
       this.label,
       required this.onChanged,
+      this.onSubmitted,
       required this.onFocus,
       required this.textInputType,
       required this.textInputAction,
@@ -28,6 +29,8 @@ class AppTextField extends StatefulWidget {
   final String? labelText;
   final String? hintText;
   final Function(FormControl<dynamic>)? onChanged;
+  final Function(FormControl<dynamic>)? onSubmitted;
+
   final Function()? onFocus;
   final Map<String, String Function(Object)>? validationMessages;
   final Widget? suffixIcon;
@@ -71,6 +74,7 @@ class _AppTextFieldState extends State<AppTextField> {
           textInputAction: widget.textInputAction,
           keyboardType: widget.textInputType,
           onChanged: widget.onChanged,
+          onSubmitted: widget.onSubmitted,
           textDirection: TextDirection.ltr,
           formControl: widget.form,
           formControlName: widget.formName,
