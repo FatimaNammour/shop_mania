@@ -55,7 +55,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ],
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  '/SearchScreen',
+                );
+              },
+              icon: const Icon(Icons.search)),
           IconButton(
               onPressed: () {},
               icon: const Icon(Icons.notifications_none_outlined))

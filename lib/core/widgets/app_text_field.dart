@@ -18,7 +18,8 @@ class AppTextField extends StatefulWidget {
       this.suffixIcon,
       this.prefixIcon,
       this.validationMessages,
-      required this.fieldfocusNode})
+      required this.fieldfocusNode,
+      this.autoFocus})
       : super(key: key);
 
   final FormControl? form;
@@ -34,6 +35,7 @@ class AppTextField extends StatefulWidget {
   final TextInputType textInputType;
   final TextInputAction textInputAction;
   final FocusNode? fieldfocusNode;
+  final bool? autoFocus;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -65,6 +67,7 @@ class _AppTextFieldState extends State<AppTextField> {
             : const SizedBox(),
         ReactiveTextField(
           focusNode: widget.fieldfocusNode,
+          autofocus: widget.autoFocus ?? false,
           textInputAction: widget.textInputAction,
           keyboardType: widget.textInputType,
           onChanged: widget.onChanged,
@@ -103,10 +106,10 @@ class _AppTextFieldState extends State<AppTextField> {
             // errorText: "errorText",
             errorBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
-                borderSide: BorderSide(color: ConstColors.red)),
+                borderSide: BorderSide(color: ConstColors.cardBackRed)),
             focusedErrorBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(20)),
-              borderSide: BorderSide(color: ConstColors.red),
+              borderSide: BorderSide(color: ConstColors.cardBackRed),
             ),
           ),
         ),

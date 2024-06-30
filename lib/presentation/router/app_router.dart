@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shop_mania/business_logic/auth/login/login_bloc.dart';
 import 'package:shop_mania/business_logic/auth/register/register_bloc.dart';
+import 'package:shop_mania/business_logic/main_home/search/search_bloc.dart';
 import 'package:shop_mania/data/repositories/auth_repo.dart';
 import 'package:shop_mania/presentation/auth/login_screen.dart';
 import 'package:shop_mania/presentation/auth/register_screen.dart';
@@ -12,6 +13,7 @@ import 'package:shop_mania/presentation/auth/splash_screen.dart';
 import 'package:shop_mania/presentation/home/main_home.dart';
 
 import '../auth/verification_screen.dart';
+import '../home/search/search_screen.dart';
 
 class AppRouter {
   MaterialPageRoute onGenerateRoute(RouteSettings routeSettings) {
@@ -49,6 +51,12 @@ class AppRouter {
 
       case "/MainHomeScreen":
         return MaterialPageRoute(builder: (_) => const MainHomeScreen());
+      case "/SearchScreen":
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => SearchBloc(const SearchState()),
+                  child: const SearchScreen(),
+                ));
       default:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
     }
