@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:shop_mania/business_logic/main_home/search/search_bloc.dart';
-import 'package:shop_mania/core/constant/enums.dart';
 import 'package:shop_mania/core/theme.dart';
 import 'package:shop_mania/core/widgets/app_text_field.dart';
-import 'package:shop_mania/presentation/home/search/pobular_search_card.dart';
 
 import '../widgets/arrifal_card.dart';
 
@@ -94,11 +92,11 @@ class SearchResultScreen extends StatelessWidget {
                                       fit: BoxFit.fill),
                                   color: ConstColors.fieldFilled),
                             ),
-                            subtitle: Text("tyguiyui"),
-                            title: Text("title"),
+                            subtitle: const Text("tyguiyui"),
+                            title: const Text("title"),
                             trailing: IconButton(
                                 onPressed: () {},
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.arrow_forward_ios_outlined,
                                   color: ConstColors.fieldFilled,
                                 )))
