@@ -14,38 +14,45 @@ class SearchScreen extends StatelessWidget {
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, currentState) {
         return Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(
-                  Icons.arrow_back_ios), // Different icon for back button
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            centerTitle: true,
-            title: ReactiveForm(
-              formGroup: context.read<SearchBloc>().form,
-              child: AppTextField(
-                formName: "searchText",
-                onChanged: (_) {},
-                onFocus: () {},
-                onSubmitted: (_) {
-                  Navigator.of(context).pushNamed(
-                    '/SearchResultScreen',
-                  );
-                },
-                textInputType: TextInputType.text,
-                textInputAction: TextInputAction.done,
-                fieldfocusNode: FocusNode(),
-                autoFocus: true,
-                prefixIcon: const Icon(Icons.search),
-              ),
-            ),
-          ),
           body: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons
+                          .arrow_back_ios), // Different icon for back button
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    Expanded(
+                      child: ReactiveForm(
+                        formGroup: context.read<SearchBloc>().form,
+                        child: AppTextField(
+                          formName: "searchText",
+                          onChanged: (_) {},
+                          onFocus: () {},
+                          onSubmitted: (_) {
+                            Navigator.of(context).pushNamed(
+                              '/SearchResultScreen',
+                            );
+                          },
+                          textInputType: TextInputType.text,
+                          textInputAction: TextInputAction.done,
+                          fieldfocusNode: FocusNode(),
+                          autoFocus: true,
+                          prefixIcon: const Icon(Icons.search),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -67,51 +74,26 @@ class SearchScreen extends StatelessWidget {
                       Chip(
                         onDeleted: () {},
                         deleteIcon: const Icon(Icons.close),
-
-                        // avatar: CircleAvatar(
-                        //   backgroundColor: Colors.grey.shade800,
-                        //   child: const Text('AB'),
-                        // ),
                         label: const Text('Aaron Burr'),
                       ),
                       Chip(
                         onDeleted: () {},
                         deleteIcon: const Icon(Icons.close),
-
-                        // avatar: CircleAvatar(
-                        //   backgroundColor: Colors.grey.shade800,
-                        //   child: const Text('AB'),
-                        // ),
                         label: const Text('Aaron Burr'),
                       ),
                       Chip(
                         onDeleted: () {},
                         deleteIcon: const Icon(Icons.close),
-
-                        // avatar: CircleAvatar(
-                        //   backgroundColor: Colors.grey.shade800,
-                        //   child: const Text('AB'),
-                        // ),
                         label: const Text('Aaron Burr'),
                       ),
                       Chip(
                         onDeleted: () {},
                         deleteIcon: const Icon(Icons.close),
-
-                        // avatar: CircleAvatar(
-                        //   backgroundColor: Colors.grey.shade800,
-                        //   child: const Text('AB'),
-                        // ),
                         label: const Text('Aaron Burr'),
                       ),
                       Chip(
                         onDeleted: () {},
                         deleteIcon: const Icon(Icons.close),
-
-                        // avatar: CircleAvatar(
-                        //   backgroundColor: Colors.grey.shade800,
-                        //   child: const Text('AB'),
-                        // ),
                         label: const Text('Aaron Burr'),
                       ),
                     ],
@@ -126,39 +108,17 @@ class SearchScreen extends StatelessWidget {
                   ],
                 ),
                 Expanded(
-                    child: ListView(
-                  children: const [
-                    PobularSearchCard(
-                      imagePath: "assets/jeans.jpg",
-                      title: "title",
-                      resultStatus: ResultStatus.hot,
-                      subTitle: "subTitle",
-                    ),
-                    PobularSearchCard(
-                      imagePath: "assets/jeans.jpg",
-                      title: "title",
-                      resultStatus: ResultStatus.neww,
-                      subTitle: "subTitle",
-                    ),
-                    PobularSearchCard(
-                      imagePath: "assets/jeans.jpg",
-                      title: "title",
-                      resultStatus: ResultStatus.pobular,
-                      subTitle: "subTitle",
-                    ),
-                    PobularSearchCard(
-                      imagePath: "assets/jeans.jpg",
-                      title: "title",
-                      resultStatus: ResultStatus.neww,
-                      subTitle: "subTitle",
-                    ),
-                    PobularSearchCard(
-                      imagePath: "assets/jeans.jpg",
-                      title: "title",
-                      resultStatus: ResultStatus.hot,
-                      subTitle: "subTitle",
-                    ),
-                  ],
+                    child: ListView.separated(
+                  itemCount: 10,
+                  separatorBuilder: (context, index) => const SizedBox(
+                    height: 4,
+                  ),
+                  itemBuilder: (context, index) => const PobularSearchCard(
+                    imagePath: "assets/jeans.jpg",
+                    title: "title",
+                    resultStatus: ResultStatus.hot,
+                    subTitle: "subTitle",
+                  ),
                 ))
               ],
             ),

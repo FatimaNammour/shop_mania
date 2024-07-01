@@ -112,13 +112,14 @@ class AppTheme {
           backgroundColor: ConstColors.white,
           deleteIconColor: ConstColors.displaySmall),
       listTileTheme: const ListTileThemeData(
+        contentPadding: EdgeInsets.all(0),
         titleTextStyle: TextStyle(
             color: ConstColors.displayLarge,
-            fontSize: 16,
+            fontSize: 14,
             fontWeight: FontWeight.bold),
         subtitleTextStyle: TextStyle(
           color: ConstColors.displaySmall,
-          fontSize: 14,
+          fontSize: 12,
         ),
       ));
 }

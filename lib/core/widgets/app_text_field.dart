@@ -17,6 +17,7 @@ class AppTextField extends StatefulWidget {
       this.labelText,
       this.hintText,
       this.suffixIcon,
+      this.onTapSuffixIcon,
       this.prefixIcon,
       this.validationMessages,
       required this.fieldfocusNode,
@@ -34,6 +35,8 @@ class AppTextField extends StatefulWidget {
   final Function()? onFocus;
   final Map<String, String Function(Object)>? validationMessages;
   final Widget? suffixIcon;
+  final Function()? onTapSuffixIcon;
+
   final Widget? prefixIcon;
   final TextInputType textInputType;
   final TextInputAction textInputAction;
