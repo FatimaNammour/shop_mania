@@ -49,6 +49,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final FocusNode numberFocusNode = FocusNode();
   final FocusNode passwordFocusNode = FocusNode();
   final FocusNode repeatPasswordFocusNode = FocusNode();
+  late CustomError error;
 
   void _onEmailChanged(
     RegisterEmailChanged event,
@@ -69,6 +70,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     Emitter<RegisterState> emit,
   ) {
     final username = event.username;
+    log("hhhhhhhhhhhi from onUserNAmeChanged ${event.username}");
     emit(
       state.copyWith(
         username: username,
@@ -127,21 +129,24 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   ) async {
     log("hiiiiii _onSubmittedddddddddd");
     log(state.toString());
-    if (state.isValid) {
+    log("state of formmmm ${form.valid}");
+    log("state of formmmm ${form.controls.values.first.value}");
+    // log(state.isValid.toString());
+    if (form.valid) {
       emit(state.copyWith(status: SubmissionStatus.inProgress));
       try {
         await _authenticationRepository.register(
           email: state.email,
           name: state.username,
           password: state.password,
-          number: state.number,
+          number: int.parse(state.number),
           passwordRepeat: state.passwordRepeat,
         );
-        emit(state.copyWith());
-      } on CustomException {
+        emit(state.copyWith(status: SubmissionStatus.success));
+      } on CustomException catch (e) {
         log("Hi from catch");
+        error = e.error;
         emit(state.copyWith(status: SubmissionStatus.failed));
-        // CustomToast.showError(e.error);
       }
     } else {
       log("Hi from else");

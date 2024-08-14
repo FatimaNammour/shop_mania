@@ -10,7 +10,10 @@ class CustomToast {
   }
 
   CustomToast.showError(CustomError error) {
-    BotToast.closeAllLoading();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BotToast.closeAllLoading();
+    });
+
     String message = "";
     switch (error) {
       case CustomError.noInternet:
@@ -32,7 +35,7 @@ class CustomToast {
         message = "Already Exists";
         break;
       case CustomError.notFound:
-        message = "User Not Found";
+        message = "User is not Found";
         break;
       case CustomError.badRequest:
         message = "Something Went Wrong";
@@ -48,6 +51,9 @@ class CustomToast {
         break;
       case CustomError.mustNumber:
         message = "Number field must be number";
+        break;
+      case CustomError.emailNotValid:
+        message = "Email field must be valid";
         break;
     }
 

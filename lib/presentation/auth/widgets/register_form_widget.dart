@@ -39,38 +39,33 @@ class RegisterForm extends StatelessWidget {
         const SizedBox(height: 15),
 
         //email input
-        InkWell(
-          onTap: () {
-            FocusScope.of(context).requestFocus(registerBloc.emailFocusNode);
+        AppTextField(
+          onFocus: () {
+            registerBloc.add(RegisterEmailChanged(
+              registerBloc.form.control("email").value.toString(),
+            ));
           },
-          child: AppTextField(
-            onFocus: () {
-              registerBloc.add(RegisterUsernameChanged(
-                  registerBloc.form.control("email").value.toString(),
-                  registerBloc.emailFocusNode.hasFocus));
-            },
-            fieldfocusNode: registerBloc.emailFocusNode,
-            onChanged: (emailFormControl) {
-              registerBloc.add(RegisterEmailChanged(emailFormControl.value));
-            },
-            textInputAction: TextInputAction.next,
-            textInputType: TextInputType.name,
-            formName: "email",
-            hintText: "Enter your Email",
-            labelText: "Email",
-            prefixIcon: const Icon(
-              Icons.email_outlined,
-              color: ConstColors.displaySmall,
-            ),
+          fieldfocusNode: registerBloc.emailFocusNode,
+          onChanged: (emailFormControl) {
+            registerBloc.add(RegisterEmailChanged(emailFormControl.value));
+          },
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.name,
+          formName: "email",
+          hintText: "Enter your Email",
+          labelText: "Email",
+          prefixIcon: const Icon(
+            Icons.email_outlined,
+            color: ConstColors.displaySmall,
           ),
         ),
         const SizedBox(height: 15),
         //number input
         AppTextField(
           onFocus: () {
-            registerBloc.add(RegisterUsernameChanged(
-                registerBloc.form.control("phoneNumber").value.toString(),
-                registerBloc.numberFocusNode.hasFocus));
+            registerBloc.add(RegisterNumberChanged(
+              registerBloc.form.control("phoneNumber").value.toString(),
+            ));
           },
           fieldfocusNode: registerBloc.numberFocusNode,
           onChanged: (numberFormControl) {
@@ -90,9 +85,9 @@ class RegisterForm extends StatelessWidget {
         //password input
         AppTextField(
           onFocus: () {
-            registerBloc.add(RegisterUsernameChanged(
-                registerBloc.form.control("password").value.toString(),
-                registerBloc.passwordFocusNode.hasFocus));
+            registerBloc.add(RegisterPasswordChanged(
+              registerBloc.form.control("password").value.toString(),
+            ));
           },
           fieldfocusNode: registerBloc.passwordFocusNode,
           onChanged: (passwordFormControl) {
@@ -117,9 +112,9 @@ class RegisterForm extends StatelessWidget {
         //repeat password input
         AppTextField(
           onFocus: () {
-            registerBloc.add(RegisterUsernameChanged(
-                registerBloc.form.control("passwordRepeat").value.toString(),
-                registerBloc.repeatPasswordFocusNode.hasFocus));
+            registerBloc.add(RegisterPasswordRepeatChanged(
+              registerBloc.form.control("passwordRepeat").value.toString(),
+            ));
           },
           fieldfocusNode: registerBloc.repeatPasswordFocusNode,
           onChanged: (passwordRFormControl) {

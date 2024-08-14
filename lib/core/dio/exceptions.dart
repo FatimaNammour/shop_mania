@@ -18,7 +18,7 @@ class ExceptionHandler {
     switch (error.runtimeType) {
       case FormatException:
         throw CustomException._(CustomError.formatException);
-      case DioExceptionType:
+      case DioException:
         if (error.type == DioExceptionType.connectionTimeout ||
             error.type == DioExceptionType.receiveTimeout ||
             error.type == DioExceptionType.sendTimeout ||
@@ -29,7 +29,7 @@ class ExceptionHandler {
         } else {
           if (error.response != null) {
             if (error.response!.statusCode == 400) {
-              throw CustomException._(CustomError.askForCode);
+              throw CustomException._(CustomError.notFound);
             } else if (error.response!.statusCode == 409) {
               if (error.response!.data["message"] == "0") {
                 throw CustomException._(CustomError.alreadyExists);
@@ -43,13 +43,11 @@ class ExceptionHandler {
               if (error.response!.data["message"] == "3") {
                 throw CustomException._(CustomError.phoneAlreadyExists);
               }
-            }
-            if (error.response!.statusCode == 401) {
+            } else if (error.response!.statusCode == 401) {
               if (error.response!.data["message"] == "0") {
                 throw CustomException._(CustomError.wrongPassword);
               }
-            }
-            if (error.response!.statusCode == 404) {
+            } else if (error.response!.statusCode == 404) {
               if (error.response!.data["message"] == "0") {
                 throw CustomException._(CustomError.notFound);
               } else if (error.response!.data["message"] == "1") {
@@ -57,13 +55,14 @@ class ExceptionHandler {
               } else {
                 throw CustomException._(CustomError.notFound);
               }
-            }
-            if (error.response!.statusCode == 405) {
+            } else if (error.response!.statusCode == 405) {
               if (error.response!.data["message"] == "0") {}
-            }
-            if (error.response!.statusCode == 422) {
+            } else if (error.response!.statusCode == 422) {
               if (error.response!.data["message"] == "number") {
                 throw CustomException._(CustomError.mustNumber);
+              } else if (error.response!.data["message"] ==
+                  '"email" must be a valid email') {
+                throw CustomException._(CustomError.emailNotValid);
               }
             }
           } else {
@@ -93,5 +92,6 @@ enum CustomError {
   wrongCode,
   wrongPassword,
   phoneAlreadyExists,
-  mustNumber
+  mustNumber,
+  emailNotValid
 }

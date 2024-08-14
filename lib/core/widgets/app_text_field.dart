@@ -50,14 +50,17 @@ class AppTextField extends StatefulWidget {
 class _AppTextFieldState extends State<AppTextField> {
   @override
   void initState() {
-    widget.fieldfocusNode!.addListener(() {
-      widget.onFocus!();
-    });
+    widget.fieldfocusNode!.addListener(_focusNodeListener);
     super.initState();
+  }
+
+  void _focusNodeListener() {
+    widget.onFocus!();
   }
 
   @override
   void dispose() {
+    widget.fieldfocusNode!.removeListener(_focusNodeListener);
     widget.fieldfocusNode!.dispose();
     super.dispose();
   }

@@ -8,6 +8,8 @@ import 'package:shop_mania/core/constant/enums.dart';
 
 import 'package:shop_mania/data/repositories/auth_repo.dart';
 
+import '../../../core/dio/exceptions.dart';
+
 part 'login_event.dart';
 part 'login_state.dart';
 
@@ -32,6 +34,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final FocusNode emailFocusNode = FocusNode();
   final FocusNode passwordFocusNode = FocusNode();
   final FocusNode sendCodeFocusNode = FocusNode();
+  late CustomError error;
 
   final sendCodeform = FormGroup({
     "email": FormControl<String>(validators: [Validators.email]),
@@ -78,12 +81,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emit(state.copyWith(status: SubmissionStatus.inProgress));
       try {
         await _authenticationRepository.logIn(
-          username: state.email,
+          email: state.email,
           password: state.password,
         );
         emit(state.copyWith(status: SubmissionStatus.success));
-      } catch (_) {
+      } on CustomException catch (e) {
         log("Hi from catch");
+        error = e.error;
         emit(state.copyWith(status: SubmissionStatus.failed));
       }
     } else {

@@ -61,11 +61,11 @@ class LoginForm extends StatelessWidget {
                   onFocus: () {
                     log("onFocus");
                   },
-                  onChanged: (emailFormControl) {
+                  onChanged: (passwordFormControl) {
                     log("asetestrtre000");
                     context
                         .read<LoginBloc>()
-                        .add(LoginEmailChanged(emailFormControl.value));
+                        .add(LoginPasswordChanged(passwordFormControl.value));
 
                     // log(context.read<LoginBloc>().);
                   },

@@ -21,13 +21,24 @@ class AuthenticationRepository {
   }
 
   Future<void> logIn({
-    required String username,
+    required String email,
     required String password,
   }) async {
-    await Future.delayed(
-      const Duration(milliseconds: 300),
-      () => _controller.add(AuthenticationStatus.authenticated),
-    );
+    // await Future.delayed(
+    //   const Duration(milliseconds: 300),
+    //   () => _controller.add(AuthenticationStatus.authenticated),
+    // );
+    try {
+      // final result =
+      await dio.post(RequestRoutes.login, data: {
+        "email": email,
+        "password": password,
+      });
+      _controller.add(AuthenticationStatus.authenticated);
+    } catch (error) {
+      log(error.toString());
+      throw ExceptionHandler(error);
+    }
   }
 
   void logOut() {
@@ -37,7 +48,7 @@ class AuthenticationRepository {
   Future<UserModel?> register({
     required String name,
     required String email,
-    required String number,
+    required int number,
     required String password,
     required String passwordRepeat,
   }) async {
@@ -49,10 +60,20 @@ class AuthenticationRepository {
           "email": email,
           "number": number,
           "password": password,
-          "passwordRepeat": passwordRepeat,
+          "password_repeat": passwordRepeat,
         },
       );
-      return UserModel.fromJson(result.data);
+      Map<String, dynamic> temp = {
+        "name": name,
+        "email": email,
+        "number": number,
+        "password": password,
+        "password_repeat": passwordRepeat,
+        "access_token": result.data["data"]["access_token"],
+        "refresh_token": result.data["data"]["refresh_token"],
+      };
+      _controller.add(AuthenticationStatus.authenticated);
+      return UserModel.fromJson(temp);
     } catch (error) {
       log(error.toString());
       throw ExceptionHandler(error);

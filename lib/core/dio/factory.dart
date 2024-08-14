@@ -7,9 +7,9 @@ class DioFactory {
   static Dio dioSetUp() {
     final BaseOptions options = BaseOptions(
       baseUrl: ConstUrls.baseUrl,
-      sendTimeout: const Duration(seconds: 3),
-      connectTimeout: const Duration(seconds: 3),
-      receiveTimeout: const Duration(seconds: 3),
+      sendTimeout: const Duration(seconds: 4),
+      connectTimeout: const Duration(seconds: 4),
+      receiveTimeout: const Duration(seconds: 4),
       contentType: "application/json; charset=UTF-8",
     );
     final Dio dio = Dio(options);
