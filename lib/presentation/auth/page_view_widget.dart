@@ -29,6 +29,7 @@ class PageViewWidget extends StatelessWidget {
         Text(
           title,
           textAlign: TextAlign.center,
+          textScaler: const TextScaler.linear(1.0),
           style: Theme.of(context).textTheme.bodyLarge,
         ),
         Text(

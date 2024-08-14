@@ -6,10 +6,12 @@ class ArrifalCard extends StatelessWidget {
       {super.key,
       required this.productName,
       required this.storeName,
-      required this.price});
+      required this.price,
+      required this.imagePath});
   final String productName;
   final String storeName;
   final String price;
+  final String imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -20,22 +22,27 @@ class ArrifalCard extends StatelessWidget {
           children: [
             Container(
               height: 160,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(imagePath), fit: BoxFit.fill),
                   color: ConstColors.fieldFilled,
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
+                  borderRadius: const BorderRadius.all(Radius.circular(20))),
             ),
             Align(
               alignment: Alignment.topRight,
-              child: Container(
-                width: 40.0,
-                height: 40.0,
-                margin: const EdgeInsets.only(top: 10, right: 10),
-                decoration: const BoxDecoration(
-                    shape: BoxShape.circle, color: ConstColors.displaySmall),
-                child: const Center(
-                  child: Icon(
-                    Icons.favorite_border_outlined,
-                    color: ConstColors.white,
+              child: Opacity(
+                opacity: 0.7,
+                child: Container(
+                  width: 40.0,
+                  height: 40.0,
+                  margin: const EdgeInsets.only(top: 10, right: 10),
+                  decoration: const BoxDecoration(
+                      shape: BoxShape.circle, color: ConstColors.displaySmall),
+                  child: const Center(
+                    child: Icon(
+                      Icons.favorite_border_outlined,
+                      color: ConstColors.white,
+                    ),
                   ),
                 ),
               ),

@@ -1,63 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTheme {
   final ThemeData themeData = ThemeData(
       primaryColor: ConstColors.primary,
-      textTheme: const TextTheme(
+      textTheme: TextTheme(
         titleLarge: TextStyle(
           color: ConstColors.displayLarge,
-          fontSize: 22,
+          fontSize: 22.sp,
           fontWeight: FontWeight.bold,
         ),
         titleMedium: TextStyle(
           color: ConstColors.displaySmall,
-          fontSize: 14,
+          fontSize: 14.sp,
           fontWeight: FontWeight.bold,
         ),
         labelLarge: TextStyle(
           color: ConstColors.displayMedium,
-          fontSize: 14,
+          fontSize: 14.sp,
           fontWeight: FontWeight.bold,
         ),
         labelMedium: TextStyle(
           color: ConstColors.displayMedium,
-          fontSize: 12,
+          fontSize: 12.sp,
           // fontWeight: FontWeight.bold,
         ),
         labelSmall: TextStyle(
           color: ConstColors.displaySmall,
-          fontSize: 10,
+          fontSize: 10.sp,
           // fontWeight: FontWeight.bold,
         ),
         bodySmall: TextStyle(
           color: ConstColors.displaySmall,
-          fontSize: 12,
+          fontSize: 12.sp,
         ),
         bodyMedium: TextStyle(
           color: ConstColors.displaySmall,
-          fontSize: 14,
+          fontSize: 14.sp,
         ),
         bodyLarge: TextStyle(
           color: ConstColors.displayLarge,
-          fontSize: 20,
+          fontSize: 20.sp,
           fontWeight: FontWeight.bold,
         ),
       ),
       textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
               textStyle: WidgetStateProperty.all<TextStyle>(
-                  const TextStyle(fontSize: 16, color: ConstColors.primary)),
+                  TextStyle(fontSize: 16.sp, color: ConstColors.primary)),
               foregroundColor:
                   WidgetStateProperty.all<Color>(ConstColors.primary))),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           padding: WidgetStateProperty.all<EdgeInsets>(
-              const EdgeInsets.symmetric(horizontal: 50)),
+              EdgeInsets.symmetric(horizontal: 50.w)),
           shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-              const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(30)))),
+              RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30.r)))),
           textStyle: WidgetStateProperty.all<TextStyle>(
-              const TextStyle(color: ConstColors.white, fontSize: 16)),
+              TextStyle(color: ConstColors.white, fontSize: 16.sp)),
           foregroundColor: WidgetStateProperty.all<Color>(ConstColors.white),
           backgroundColor: WidgetStateProperty.all<Color>(ConstColors.primary),
         ),
@@ -66,12 +67,11 @@ class AppTheme {
         style: OutlinedButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: 50),
           side: const BorderSide(
-            // width: 10,
             color: ConstColors.displaySmall,
           ),
-          textStyle: const TextStyle(
+          textStyle: TextStyle(
               color: ConstColors.displayLarge,
-              fontSize: 14,
+              fontSize: 14.sp,
               fontWeight: FontWeight.bold),
           foregroundColor: ConstColors.displayLarge,
           backgroundColor: ConstColors.white,
@@ -82,16 +82,16 @@ class AppTheme {
         backgroundColor: ConstColors.white,
         dragHandleColor: ConstColors.displaySmall,
       ),
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
           backgroundColor: ConstColors.white,
           centerTitle: true,
           surfaceTintColor: Colors.transparent,
           titleTextStyle: TextStyle(
             color: ConstColors.displayMedium,
-            fontSize: 14,
+            fontSize: 14.sp,
             fontWeight: FontWeight.bold,
           ),
-          actionsIconTheme: IconThemeData(size: 25)),
+          actionsIconTheme: IconThemeData(size: 25.w)),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: true,
@@ -111,15 +111,15 @@ class AppTheme {
       chipTheme: const ChipThemeData(
           backgroundColor: ConstColors.white,
           deleteIconColor: ConstColors.displaySmall),
-      listTileTheme: const ListTileThemeData(
-        contentPadding: EdgeInsets.all(0),
+      listTileTheme: ListTileThemeData(
+        contentPadding: const EdgeInsets.all(0),
         titleTextStyle: TextStyle(
             color: ConstColors.displayLarge,
-            fontSize: 14,
+            fontSize: 14.sp,
             fontWeight: FontWeight.bold),
         subtitleTextStyle: TextStyle(
           color: ConstColors.displaySmall,
-          fontSize: 12,
+          fontSize: 12.sp,
         ),
       ));
 }

@@ -37,7 +37,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               width: 50.0,
               height: 50.0,
               decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: ConstColors.fieldFilled),
+                  image: DecorationImage(
+                      image: AssetImage(
+                          "assets/craig-mckay-jmURdhtm7Ng-unsplash.jpg"),
+                      fit: BoxFit.fitWidth),
+                  shape: BoxShape.circle,
+                  color: ConstColors.fieldFilled),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,

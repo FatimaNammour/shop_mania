@@ -293,6 +293,7 @@ class SearchResultScreen extends StatelessWidget {
                               childAspectRatio: 100 / 130),
                       itemBuilder: (context, int index) {
                         return const ArrifalCard(
+                          imagePath: "assets/c-d-x-PDX.jpg",
                           productName: "Product name",
                           storeName: "store name",
                           price: "2151",

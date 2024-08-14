@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:shop_mania/core/theme.dart';
 
 class OfferCard extends StatelessWidget {
-  const OfferCard({super.key, required this.title, required this.subTitle});
+  const OfferCard(
+      {super.key,
+      required this.title,
+      required this.subTitle,
+      required this.imagePath});
   final String title;
   final String subTitle;
+  final String imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +20,17 @@ class OfferCard extends StatelessWidget {
         children: [
           Container(
             height: 110,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(imagePath),
+                    fit: BoxFit.contain,
+                    alignment: Alignment.bottomRight),
                 color: ConstColors.fieldFilled,
-                borderRadius: BorderRadius.all(Radius.circular(20))),
+                borderRadius: const BorderRadius.all(Radius.circular(20))),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 width: 200.0,
@@ -36,6 +46,7 @@ class OfferCard extends StatelessWidget {
               ),
               Text(
                 subTitle,
+                textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleMedium,
               )
             ],

@@ -28,12 +28,15 @@ class _HomePageState extends State<HomePage> {
                 controller: pageController,
                 children: const [
                   OfferCard(
+                      imagePath: "assets/caroline-attwood.jpg",
                       title: "24% of shipping today on bag purchases",
                       subTitle: "By shop mania store"),
                   OfferCard(
+                      imagePath: "assets/rachit-tank-2cFZ.jpg",
                       title: "24% of shipping today on bag purchases",
                       subTitle: "By shop mania store"),
                   OfferCard(
+                      imagePath: "assets/domino-studio.jpg",
                       title: "24% of shipping today on bag purchases",
                       subTitle: "By shop mania store"),
                 ],
@@ -78,6 +81,7 @@ class _HomePageState extends State<HomePage> {
                     childAspectRatio: 100 / 130),
                 itemBuilder: (context, int index) {
                   return const ArrifalCard(
+                    imagePath: "assets/c-d-x-PDX.jpg",
                     productName: "Product name",
                     storeName: "store name",
                     price: "2151",
