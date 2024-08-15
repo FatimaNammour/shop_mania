@@ -7,14 +7,8 @@ class RequestRoutes {
   //User
   static const String getUser = "/users/612e4851345dcc333ac6cb24";
 
-  //Ride
-  static const String startRide = "/ride/start";
-  static const String endRide = "/ride/end";
-  static const String cancelRide = "/ride/cancel";
-  static const String rideDriver = "/ride/driver/";
-  static const String ride = "/ride/";
-  static const String rideResponse = "/drivers/rideResponse";
-  static const String notifyClient = "/drivers/notify";
+  //Category
+  static const String categories = "/categories";
 
   static const String notifications = "/notification/user/";
 

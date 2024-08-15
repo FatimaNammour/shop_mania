@@ -29,7 +29,10 @@ class ExceptionHandler {
         } else {
           if (error.response != null) {
             if (error.response!.statusCode == 400) {
-              throw CustomException._(CustomError.notFound);
+              if (error.response!.data["message"] == "Your password is wrong") {
+                throw CustomException._(CustomError.wrongPassword);
+              }
+              // throw CustomException._(CustomError.notFound);
             } else if (error.response!.statusCode == 409) {
               if (error.response!.data["message"] == "0") {
                 throw CustomException._(CustomError.alreadyExists);

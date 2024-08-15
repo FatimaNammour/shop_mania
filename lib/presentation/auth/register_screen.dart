@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:shop_mania/business_logic/auth/register/register_bloc.dart';
 import 'package:shop_mania/core/constant/enums.dart';
-import 'package:shop_mania/core/widgets/loading.dart';
 
 import '../../core/widgets/toast.dart';
 import 'widgets/register_form_widget.dart';

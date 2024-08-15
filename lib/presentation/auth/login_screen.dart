@@ -7,7 +7,6 @@ import 'package:shop_mania/business_logic/auth/login/login_bloc.dart';
 
 import 'package:shop_mania/core/constant/enums.dart';
 import 'package:shop_mania/core/theme.dart';
-import 'package:shop_mania/core/widgets/loading.dart';
 import 'package:shop_mania/core/widgets/toast.dart';
 import 'package:shop_mania/presentation/auth/widgets/login_form_widget.dart';
 

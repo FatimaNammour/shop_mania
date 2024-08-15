@@ -44,7 +44,7 @@ class CustomToast {
         message = "Wrong Code";
         break;
       case CustomError.wrongPassword:
-        message = " wrongPassword ";
+        message = " Your password is wrong ";
         break;
       case CustomError.phoneAlreadyExists:
         message = "Account For Client";
